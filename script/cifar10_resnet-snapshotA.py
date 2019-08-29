@@ -418,7 +418,7 @@ checkpoint = ModelCheckpoint(filepath=filepath,
                              verbose=1,
                              save_best_only=False,
                              mode='max')
-# load_weights_on_restart=True
+# Learning rate updater
 lr_scheduler = cyclic_cosine_anneal_schedule(initial_lr=initial_lr, update_window_size=snapshot_window_size)
 
 # Training log writer

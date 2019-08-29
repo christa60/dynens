@@ -47,6 +47,7 @@ top_k = int(args.topk)
 
 # Set random seed
 if seed is not None:
+    print('Setting seed.')
     import tensorflow as tf
     tf.set_random_seed(seed)
     np.random.seed(seed)
@@ -56,6 +57,9 @@ batch_size = 32  # orig paper trained all networks with batch_size=128
 epochs = 200 # orig paper epochs = 200
 data_augmentation = True
 num_classes = 100
+initial_lr = 1e-3
+snapshot_window_size = int(math.ceil(epochs/top_k))
+
 
 # Subtracting pixel mean improves accuracy
 subtract_pixel_mean = True
@@ -129,9 +133,9 @@ if subtract_pixel_mean:
     x_valid -= x_train_mean
 
 print('x_train shape:', x_train.shape)
+print('y_train shape:', y_train.shape)
 print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
-print('y_train shape:', y_train.shape)
 print(x_valid.shape[0], 'valid samples')
 
 # Convert class vectors to binary class matrices.
@@ -148,30 +152,27 @@ def next_run_dir(path):
         i += 1
     return '{}_{}'.format(path, i)
 
-def lr_schedule(epoch):
-    """Learning Rate Schedule
+def cyclic_cosine_anneal_schedule(initial_lr=1e-3, update_window_size=40):
+    '''
+    Wrapper function to create a LearningRateScheduler with cosine annealing schedule.
+    '''
+    def lr_schedule(epoch):
+        """Learning Rate Schedule
 
-    Learning rate is scheduled to be reduced after 80, 120, 160, 180 epochs.
-    Called automatically every epoch as part of callbacks during training.
+        Learning rate is scheduled to be updated per epoch with a cosine function. 
+        Learning rate is raised to initial_lr every update_window_size.
 
-    # Arguments
-        epoch (int): The number of epochs
+        # Arguments
+            epoch (int): The number of epochs
 
-    # Returns
-        lr (float32): learning rate
-    """
-    lr = 1e-3
-    if epoch > 180:
-        lr *= 0.5e-3
-    elif epoch > 160:
-        lr *= 1e-3
-    elif epoch > 120:
-        lr *= 1e-2
-    elif epoch > 80:
-        lr *= 1e-1
-    print('Learning rate: ', lr)
-    return lr
-
+        # Returns
+            lr (float32): learning rate
+        """
+        lr = initial_lr / 2 * (math.cos(math.pi * ((epoch % update_window_size) / update_window_size)) + 1)
+        print('Learning rate: ', lr)
+        return lr
+    
+    return LearningRateScheduler(lr_schedule)
 
 def resnet_layer(inputs,
                  num_filters=16,
@@ -394,7 +395,7 @@ else:
     model = resnet_v1(input_shape=input_shape, depth=depth, num_classes=num_classes)
 
 model.compile(loss='categorical_crossentropy',
-              optimizer=Adam(lr=lr_schedule(0)),
+              optimizer=Adam(lr=initial_lr),
               metrics=['accuracy'])
 # model.summary()
 print(model_type)
@@ -415,19 +416,15 @@ checkpoint = ModelCheckpoint(filepath=filepath,
                              verbose=1,
                              save_best_only=False,
                              mode='max')
-# load_weights_on_restart=True
-lr_scheduler = LearningRateScheduler(lr_schedule)
-
-lr_reducer = ReduceLROnPlateau(factor=np.sqrt(0.1),
-                               cooldown=0,
-                               patience=5,
-                               min_lr=0.5e-6)
+# Learning rate updater
+lr_scheduler = cyclic_cosine_anneal_schedule(initial_lr=initial_lr, update_window_size=snapshot_window_size)
 
 # Training log writer
 logfile = '{}/callback_training_log.csv'.format(save_dir)
 csvlog = CSVLogger(logfile, separator=',', append=False)
 
-callbacks = [checkpoint, lr_reducer, lr_scheduler, csvlog]
+
+callbacks = [checkpoint, lr_scheduler, csvlog]
 
 # Run training, with or without data augmentation.
 if not data_augmentation:
@@ -477,21 +474,10 @@ else:
                         steps_per_epoch=steps_per_epoch,
                         callbacks=callbacks)
 
-# Score trained model.
-scores = model.evaluate(x_test, y_test, verbose=1)
-print('Test loss:', scores[0])
-print('Test accuracy:', scores[1])
-
 # Save training log
 print('Saving training log...')
 train_error = history.history['loss']
 valid_accuracy = history.history['val_acc']
-# logfile = '{}/training_log.csv'.format(save_dir)
-# f = open(logfile, 'w')
-# f.write('current_epoch,total_epochs,train_loss,validation_accuracy\n')
-# for i in range(len(train_error)):
-#     f.write('{},{},{},{}\n'.format(i+1, epochs, train_error[i], valid_accuracy[i]))
-# f.close()
 
 # Save index for combination
 c = [str(i) for i in range(num_classes)]
@@ -499,7 +485,9 @@ header = ','.join(c) + '\n'
 print('Writing index file and predict files...')
 indexfile = '{}/index.csv'.format(save_dir)
 f = open(indexfile, 'w')
-top_x = sorted(range(len(valid_accuracy)), key=lambda i: valid_accuracy[i])[-top_k:]
+top_x = []
+for i in range(1, top_k):
+    top_x.append(np.argmax(valid_accuracy[i*snapshot_window_size:(i+1)*snapshot_window_size]) + i*snapshot_window_size)
 top_v = [valid_accuracy[i] for i in top_x]
 for x,v in zip(top_x, top_v):
     name = 'prediction_{:04d}.csv'.format(x+1)
