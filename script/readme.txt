@@ -24,4 +24,3 @@ python -W ignore compute_accuracy.py -p $filename -g $gfile -o $ofile -d $distr
 
 ## Compute reproducibility
 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
-

@@ -54,7 +54,7 @@ if seed is not None:
 
 # Training parameters
 batch_size = 32  # orig paper trained all networks with batch_size=128
-epochs = 200 # orig paper epochs = 200
+epochs = 400 # orig paper epochs = 200
 data_augmentation = True
 num_classes = 100
 initial_lr = 1e-3

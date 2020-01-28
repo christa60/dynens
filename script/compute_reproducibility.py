@@ -65,22 +65,27 @@ if trainingdistr is not None:
             break
     minority = list(set(range(len(newlist))) - set(majority))
 
-    tp, total = 0, 0
+    tp, cer, total = 0, 0, 0
     for i in majority:
         tp += c_mat[i,i]
+        cer += cm_correct[i]
         total += np.sum(c_mat[i])
     majority_er = tp/total*100
+    majority_ea_er = cer/total*100
 
-    tp, total = 0, 0
+    tp, cer, total = 0, 0, 0
     for i in minority:
         tp += c_mat[i,i]
+        cer += cm_correct[i]
         total += np.sum(c_mat[i])
     minority_er = tp/total*100
+    minority_ea_er = cer/total*100
 else:
     majority_er, minority_er = -1, -1
-    
-print('{},{},{},{},{},{},{},{},{}'.format(majority_er, minority_er, er, crl, er_ea, pearson, cosine, ea_er, cr))
+    majority_ea_er, minority_ea_er = -1, -1
+
+print('{},{},{},{},{},{},{},{},{},{},{}'.format(majority_er, minority_er, er, crl, er_ea, pearson, cosine, ea_er, cr, majority_ea_er, minority_ea_er))
 if outputfile:
     f = open(outputfile,'a')
-    f.write('{},{},{},{},{},{},{},{},{},{},{}\n'.format(predfile1, predfile2, majority_er, minority_er, er, crl, er_ea, pearson, cosine, ea_er, cr))
+    f.write('{},{},{},{},{},{},{},{},{},{},{},{},{}\n'.format(predfile1, predfile2, majority_er, minority_er, er, crl, er_ea, pearson, cosine, ea_er, cr, majority_ea_er, minority_ea_er))
     f.close()

@@ -10,7 +10,7 @@ parser.add_argument("-d", "--workdir", help="work directory")
 args = parser.parse_args()
 workdir = args.workdir
 
-num_classes = 100
+num_classes = 10
 workdir = '/home/ubuntu/Projects/hybrid-ensemble/data/cifar{}_imbalance'.format(num_classes)
 datafile = '{}/DS3'.format(workdir)
 print('Loading data...')
