@@ -34,9 +34,9 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 
 
 
-# ## Compute Baseline reproducibility
+## Compute Baseline reproducibility
 # workdir=$WORKDIR/output
-# datadirs=('cifar100_imbalance')
+# datadirs=('yahoo_imbalance')
 # datafiles=('DS1' 'DS2' 'DS3')
 # seeds=(22 34 46 58 60)
 # runs=('run_1' 'run_2' 'run_3' 'run_4' 'run_5')
@@ -49,22 +49,22 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #     echo $workdir $datadir $run $seed
 #     ofile="$workdir/$datadir/accuracy.csv"
 #     gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
-#     distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#     distr="$WORKDIR/data/$datadir/training_distr.pickle"
     
 #     filename1=`find $workdir/$datadir/DS1/simple-ensemble/$run/ -name 'prediction*.csv'`
 #     filename2=`find $workdir/$datadir/DS2/simple-ensemble/$run/ -name 'prediction*.csv'`
-#     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $ofile -d $distr
-# #     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+# #     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $ofile -d $distr
+#     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
     
 #     filename1=`find $workdir/$datadir/DS1/simple-ensemble/$run/ -name 'prediction*.csv'`
 #     filename2=`find $workdir/$datadir/DS3/simple-ensemble/$run/ -name 'prediction*.csv'`
-#     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $ofile -d $distr
-# #     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+# #     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $ofile -d $distr
+#     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
     
 #     filename1=`find $workdir/$datadir/DS2/simple-ensemble/$run/ -name 'prediction*.csv'`
 #     filename2=`find $workdir/$datadir/DS3/simple-ensemble/$run/ -name 'prediction*.csv'`
-#     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $ofile -d $distr
-# #     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+# #     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $ofile -d $distr
+#     python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
         
 #     done
 # done
@@ -138,11 +138,12 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #     done
 # done
 
-## Compute reproducibility for ensemble 
+# ## Compute reproducibility for ensemble 
 # workdir=$WORKDIR/output
-# datadirs=('cifar10_imbalance')
+# datadirs=('yahoo_imbalance')
 # datafiles=('DS1' 'DS2' 'DS3')
-# modeldirs=('simple-ensemble' 'snapshot' 'snapshot-A' 'snapshot-B' 'super-ensemble')
+# # modeldirs=('simple-ensemble' 'snapshot' 'snapshot-A' 'snapshot-B' 'super-ensemble')
+# modeldirs=('simple-ensemble' 'snapshot' 'snapshot-A' 'snapshot-B')
 # methods=('majority_voting' 'weighted_voting' 'averaging' 'weighted_averaging')
 
 # # DS1-DS2
@@ -155,12 +156,12 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS2/$modeldir/prediction_$method.csv"
-#                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
-# #                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+# #                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+#                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
 #                done    
 #         done
 # done
@@ -175,12 +176,12 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/$modeldir/prediction_$method.csv"
-#                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
-# #                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+# #                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+#                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
 #                done    
 #         done
 # done
@@ -195,12 +196,12 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS2/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/$modeldir/prediction_$method.csv"
-#                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
-# #                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+# #                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+#                 python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
 #                done    
 #         done
 # done
@@ -285,7 +286,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 pfile="$workdir/$datadir/$datafile/sensitivity-ensemble-number/$modeldir/prediction_$method.csv"
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 ofile="$workdir/$datadir/accuracy.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
                 
 #                 python -W ignore compute_accuracy.py -p $pfile -g $gfile -o $ofile -d $distr
 #                 done
@@ -306,7 +307,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/sensitivity-ensemble-number/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS2/sensitivity-ensemble-number/$modeldir/prediction_$method.csv"
@@ -329,7 +330,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/sensitivity-ensemble-number/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/sensitivity-ensemble-number/$modeldir/prediction_$method.csv"
@@ -352,7 +353,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS2/sensitivity-ensemble-number/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/sensitivity-ensemble-number/$modeldir/prediction_$method.csv"
@@ -422,7 +423,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 pfile="$workdir/$datadir/$datafile/sensitivity-window-size/$modeldir/prediction_$method.csv"
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 ofile="$workdir/$datadir/accuracy.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
                 
 #                 python -W ignore compute_accuracy.py -p $pfile -g $gfile -o $ofile -d $distr
 #                 done
@@ -444,7 +445,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/sensitivity-window-size/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS2/sensitivity-window-size/$modeldir/prediction_$method.csv"
@@ -468,7 +469,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/sensitivity-window-size/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/sensitivity-window-size/$modeldir/prediction_$method.csv"
@@ -492,7 +493,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS2/sensitivity-window-size/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/sensitivity-window-size/$modeldir/prediction_$method.csv"
@@ -561,7 +562,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 pfile="$workdir/$datadir/$datafile/sensitivity-prune-factor/$modeldir/prediction_$method.csv"
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 ofile="$workdir/$datadir/accuracy.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
                 
 #                 python -W ignore compute_accuracy.py -p $pfile -g $gfile -o $ofile -d $distr
 #                 done
@@ -583,7 +584,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/sensitivity-prune-factor/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS2/sensitivity-prune-factor/$modeldir/prediction_$method.csv"
@@ -607,7 +608,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS1/sensitivity-prune-factor/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/sensitivity-prune-factor/$modeldir/prediction_$method.csv"
@@ -631,7 +632,7 @@ WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 #                 do
 #                 gfile="$workdir/$datadir/DS1/simple-ensemble/run_1/target.csv"
 #                 outfile="$workdir/$datadir/reproducibility.csv"
-#                 distr="$WORKDIR/data/cifar100_imbalance/training_distr.pickle"
+#                 distr="$WORKDIR/data/$datadir/training_distr.pickle"
 
 #                 filename1="$workdir/$datadir/DS2/sensitivity-prune-factor/$modeldir/prediction_$method.csv"
 #                 filename2="$workdir/$datadir/DS3/sensitivity-prune-factor/$modeldir/prediction_$method.csv"

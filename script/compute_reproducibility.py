@@ -33,16 +33,17 @@ df_p2 = pd.read_csv(predfile2,header=0)
 
 # compute confusion matrix
 cm, cm_correct, c_mat = cf.confusion_matrix_plus(df_g, df_p1, df_p2)
-er_ea = np.sum(cm_correct)/np.sum(cm)*100
-ea_er = np.sum(cm_correct)/df_g.shape[0]*100
-er = np.sum(cm)/df_g.shape[0]*100
-pearson = cf.ER_pearson_correlation(df_p1, df_p2)
-cosine = cf.ER_cosine_similarity(df_p1, df_p2)
-if 'voting' in predfile1:
-    cr, crl = -1, -1
-else:
-    cr = cf.ER(df_p1, df_p2, k=2)
-    crl = cf.ER_new(df_p1, df_p2, k=2)
+# er_ea = np.sum(cm_correct)/np.sum(cm)*100
+# ea_er = np.sum(cm_correct)/df_g.shape[0]*100
+# er = np.sum(cm)/df_g.shape[0]*100
+# pearson = cf.ER_pearson_correlation(df_p1, df_p2)
+# cosine = cf.ER_cosine_similarity(df_p1, df_p2)
+# if 'voting' in predfile1:
+#     cr, crl = -1, -1
+# else:
+#     cr = cf.ER(df_p1, df_p2, k=2)
+#     crl = cf.ER_new(df_p1, df_p2, k=2)
+er_ea,ea_er,er,pearson,cosine,cr,crl = 0,0,0,0,0,0,0
 
 # majoriy/minority reproducibility
 if trainingdistr is not None:
