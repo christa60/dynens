@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # WORKDIR='/home/ubuntu/Projects/hybrid-ensemble'
-WORKDIR='/scratch/lw8bn/hybrid_ensemble'
 
 # python -W ignore compute_reproducibility.py -p1 '../output/cifar10_balance/DS1/simple-ensemble/run_1/prediction_0144.csv' -p2 '../output/cifar10_balance/DS1/simple-ensemble/run_2/prediction_0135.csv' -g '../output/cifar10_balance/DS1/simple-ensemble/run_1/target.csv'
 
