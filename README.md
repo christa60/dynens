@@ -6,15 +6,19 @@ OR
 tensorflow 1.13.1
 keras 2.2.4
 
-## Generate training dataset (imbalancing datasets)
-generate_training_dataset_cifar10.py
-generate_training_dataset_cifar100.py
+## Generate balanced and imbalanced training dataset. Generate validation and testing datasets
+- python generate_training_dataset_cifar10.py
+- python generate_training_dataset_cifar100.py
 
-## Generate class distribution for imbalance dataset. This will be used when computing majority and minority metrics. 
-generate_class_distribution.py
+## Generate class distribution for imbalance dataset. 
+### To be used while computing majority and minority class metrics. 
+- python generate_class_distribution.py
 
-## Run model training and predicting. Run different models on different datasets. Please modify the commands in run.sh.
-## Note that *-snapshot.py corresponds to dynens-cyc learning with t as iteration number, *-snapshotA.py corresponds to dynens-cyc, *-snapshotB.py corresponds to dynens-step. 
+## Run model training and inference. 
+### Run different models on different datasets. Please modify the commands in run.sh.
+#### Note: *-snapshot.py corresponds to dynens-cyc learning with t as iteration number
+#### Note: *-snapshotA.py corresponds to dynens-cyc
+#### Note: *-snapshotB.py corresponds to dynens-step. 
 ./run.sh
 
 ## Pruning algorithm. To experiment on \beta, we separate the pruning step with the single learning generation step. In practical application, these two steps can be integrate into one step.
