@@ -18,7 +18,7 @@ source activate tensorflow_p36
 #### Note: *-snapshotB.py corresponds to dynens-step. 
 ./run.sh
 
-## Outputs combination, accuracy and reproducibility computation. Please do it step by step.
+## Outputs combination, accuracy and consistency computation. Please do it step by step.
 metric.sh
 
 ## Choose a number of components K, then randomly select K single learners from the pool of single learners.
@@ -27,5 +27,5 @@ python -W ignore random_generate_index_by_number.py -i $indexfile -o $outfile -n
 ## Compute accuracy
 python -W ignore compute_accuracy.py -p $filename -g $gfile -o $ofile -d $distr
 
-## Compute reproducibility
-python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+## Compute consistency
+python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr

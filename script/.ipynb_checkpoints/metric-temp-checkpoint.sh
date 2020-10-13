@@ -52,15 +52,15 @@ do
     
     filename1=`find $workdir/$datadir/DS1/dropout/$run/ -name 'prediction*.csv'`
     filename2=`find $workdir/$datadir/DS2/dropout/$run/ -name 'prediction*.csv'`
-    python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+    python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
     
     filename1=`find $workdir/$datadir/DS1/dropout/$run/ -name 'prediction*.csv'`
     filename2=`find $workdir/$datadir/DS3/dropout/$run/ -name 'prediction*.csv'`
-    python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+    python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
     
     filename1=`find $workdir/$datadir/DS2/dropout/$run/ -name 'prediction*.csv'`
     filename2=`find $workdir/$datadir/DS3/dropout/$run/ -name 'prediction*.csv'`
-    python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
+    python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -d $distr
         
     done
 done

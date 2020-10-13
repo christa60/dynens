@@ -15,7 +15,7 @@ keras 2.2.4
 - python generate_class_distribution.py
 
 ## Run model training and inference. 
-### Run different models on different datasets. Please modify the commands in run.sh.
+### Run different models on different datasets. Please modify the commands in run.sh and run step by step.
 #### Note: *-snapshot.py corresponds to dynens-cyc learning with t as iteration number
 #### Note: *-snapshotA.py corresponds to dynens-cyc
 #### Note: *-snapshotB.py corresponds to dynens-step. 
@@ -24,7 +24,7 @@ keras 2.2.4
 ## Pruning algorithm. To experiment on \beta, we separate the pruning step with the single learning generation step. In practical application, these two steps can be integrate into one step.
 python prune-avg.py -i $inputfile -n 20 -o $outputfile
 
-## Outputs combination, accuracy and reproducibility computation. Please do it step by step.
+## Outputs combination, accuracy and consistency computation. Please modify based on need and execute step by step.
 metric.sh
 
 ## Choose a number of components K, then randomly select K single learners from the pool of single learners. (discrepancy)
@@ -33,5 +33,5 @@ python -W ignore random_generate_index_by_number.py -i $indexfile -o $outfile -n
 ## Compute accuracy
 python -W ignore compute_accuracy.py -p $filename -g $gfile -o $ofile -d $distr
 
-## Compute reproducibility
-python -W ignore compute_reproducibility.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+## Compute consistency
+python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
