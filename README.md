@@ -1,10 +1,7 @@
 # Dynamic snapshot ensemble
 
-## Activate conda env for the codes
-(AWS p3.2Xlarge) source activate tensorflow_p36
-OR
-tensorflow 1.13.1
-keras 2.2.4
+## Create conda environment and install packages using requirements.txt
+## Activate conda environment
 
 ## Generate balanced and imbalanced training dataset. Generate validation and testing datasets
 - python generate_training_dataset_cifar10.py
