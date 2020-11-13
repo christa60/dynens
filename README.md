@@ -20,11 +20,11 @@ We implement two snapshot learning methods: *dynens-cyc* uses cyclic annealing s
 
 **Pruning criteria**
 A single learner is included in the final ensemble learner if its validation accuracy is larger than the pruning threshold defined as:<br>
-<img src='prune.png'>
+<img src='https://github.com/christa60/dynens/blob/neurips_cleanup/images/prune.png'>
 
 **Dynamic snapshot ensemble**
 Comining extended bagging technique and snapshot learning technique with dynamic pruning. The proposed ensemble method can achieve better accuracy, consistency, correct-consistency without compromising computational cost.<br>
-<img src='framework.png'>
+<img src='https://github.com/christa60/dynens/blob/neurips_cleanup/images/framework.png' width=60%>
 
 # Performance
 Single learner: SingleBase 
@@ -33,7 +33,7 @@ Ensemble learner: ExtBagging, MCDropout, Snapshot, DynSnap-cyc (ours), DynSnap-s
 Accuracy (ACC); Consistency (CON); Correct-Consistency (ACC-CON) 
 Combination methods: Majority Voting (MV); Weighted Majority Voting (WMV); Averaging (AVG); Weighted Averaging (WAVG)
 
-<img src='result.png' width=90%>
+<img src='https://github.com/christa60/dynens/blob/neurips_cleanup/images/result.png' width=60%>
 
 
 # Usage
