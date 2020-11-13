@@ -78,10 +78,10 @@ random_generate_index_by_number.py
 ```
 
 # Requirements
-python 3.6.5
-numpy 1.15.4
-pandas 0.24.2
-tensorflow 1.13.1 
-keras 2.2.4
-scikit-learn 0.19.1
-scipy 1.1.0
+- python 3.6.5
+- numpy 1.15.4
+- pandas 0.24.2
+- tensorflow 1.13.1 
+- keras 2.2.4
+- scikit-learn 0.19.1
+- scipy 1.1.0
