@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-```
+: << '###'
 *snapshot.py refer to DynSnap-cyc method in the paper
 *snapshotA.py refer to DynSnap-cyc but the learning rate is updated per iteration
 *snapshotB.py refer to DynSnap-step method in the paper
@@ -13,7 +13,7 @@ MCDropout: *dropout.py with mc_num = M
 Snapshot: *snapshot.py without pruning
 DynSnap-cyc: *snapshot.py with dynamic pruning
 DynSnap-step: *snapshotB.py with dynamic pruning
-```
+###
 
 # CIFAR10
 workdir='/home/ubuntu/Projects/dynens' # Note: Change work directory based on need
