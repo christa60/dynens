@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import operator
 import pickle
-import common_functions as cf
+import utils as cf
 
 import argparse
 
@@ -38,6 +38,8 @@ if 'voting' in predfile:
 else:
     ca = cf.EA(df_p, df_g, k=2)
 
+
+## Discrepancy ###
 # majoriy/minority accuracy
 if trainingdistr is not None:
     with open(trainingdistr, 'rb') as handle:
@@ -77,3 +79,5 @@ if outputfile:
     f = open(outputfile,'a')
     f.write('{},{},{},{},{}\n'.format(predfile, ea, majority_ea, minority_ea, ca))
     f.close()
+
+

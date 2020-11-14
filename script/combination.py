@@ -1,7 +1,7 @@
 from collections import defaultdict
 import pandas as pd
 import numpy as np
-import common_functions as cf
+import utils as cf
 
 
 import argparse

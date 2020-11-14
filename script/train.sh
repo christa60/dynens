@@ -1,17 +1,22 @@
 #!/bin/bash
 
 
-#TODO:
-# Check script comments/questions below
-# Check seed settings for all experiments
-# Check directory settings for all experiments
-# Check run directory settings for all experiments
-# Create scripts for Yahoo dataset
-# Create script for dropout
+```
+*snapshot.py refer to DynSnap-cyc method in the paper
+*snapshotA.py refer to DynSnap-cyc but the learning rate is updated per iteration
+*snapshotB.py refer to DynSnap-step method in the paper
+*dropout.py refer to MCDropout method in the paper
 
+SingleBase: *snapshotB.py with --topK 1
+ExtBagging: Run SingleBase M times with different --seed, then combine them
+MCDropout: *dropout.py with mc_num = M
+Snapshot: *snapshot.py without pruning
+DynSnap-cyc: *snapshot.py with dynamic pruning
+DynSnap-step: *snapshotB.py with dynamic pruning
+```
 
 # CIFAR10
-workdir='/home/ubuntu/Projects/hybrid-ensemble' # Note: Change work directory based on need
+workdir='/home/ubuntu/Projects/dynens' # Note: Change work directory based on need
 datadirs=('cifar10_imbalance')
 datafiles=('DS1' 'DS2' 'DS3')
 seeds=(22 34 46 58 60 70 80 90 100 110)
@@ -35,7 +40,7 @@ do
 done
 
 # CIFAR100
-workdir='/home/ubuntu/Projects/hybrid-ensemble' # Note: Change work directory based on need
+workdir='/home/ubuntu/Projects/dynens' # Note: Change work directory based on need
 datadirs=('cifar100_imbalance')
 datafiles=('DS1' 'DS2' 'DS3')
 seeds=(22 34 46 58 60 70 80 90 100 110)
@@ -59,7 +64,7 @@ do
 done
 
 # Yahoo
-workdir='/home/ubuntu/Projects/hybrid-ensemble' # Note: Change work directory based on need
+workdir='/home/ubuntu/Projects/dynens' # Note: Change work directory based on need
 datadirs=('yahoo_imbalance')
 datafiles=('DS1' 'DS2' 'DS3')
 seeds=(10 20 30 40 50 60 70 80 90 100)

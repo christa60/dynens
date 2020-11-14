@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WORKDIR='/home/ubuntu/Projects/hybrid-ensemble' # Note: Change work directory based on need
+WORKDIR='/home/ubuntu/Projects/dynens' # Note: Change work directory based on need
 
 
 # Compute accuracy (ACC) for ensemble 
@@ -22,9 +22,8 @@ do
                 pfile="$workdir/$datadir/$datafile/$methodname/prediction_$method.csv"
                 gfile="$workdir/$datadir/$datafile/$methodname/run_1/target.csv"
                 ofile="$workdir/$datadir/accuracy.csv"
-                distr="$WORKDIR/data/$datadir/training_distr.pickle"
                 
-                python -W ignore compute_accuracy.py -p $pfile -g $gfile -o $ofile -d $distr
+                python -W ignore compute_acc.py -p $pfile -g $gfile -o $ofile
                 done
         done
     done
@@ -45,12 +44,11 @@ do
                 for method in "${methods[@]}"
                 do
                 gfile="$workdir/$datadir/$datafile/$methodname/run_1/target.csv"
-                outfile="$workdir/$datadir/reproducibility.csv"
-                distr="$WORKDIR/data/$datadir/training_distr.pickle"
+                outfile="$workdir/$datadir/consistency.csv"
 
                 filename1="$workdir/$datadir/DS1/$modeldir/prediction_$method.csv"
                 filename2="$workdir/$datadir/DS2/$modeldir/prediction_$method.csv"
-                python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+                python -W ignore compute_con.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile
 
 
                done    
@@ -70,12 +68,11 @@ do
                 for method in "${methods[@]}"
                 do
                 gfile="$workdir/$datadir/$datafile/$methodname/run_1/target.csv"
-                outfile="$workdir/$datadir/reproducibility.csv"
-                distr="$WORKDIR/data/$datadir/training_distr.pickle"
+                outfile="$workdir/$datadir/consistency.csv"
 
                 filename1="$workdir/$datadir/DS1/$modeldir/prediction_$method.csv"
                 filename2="$workdir/$datadir/DS3/$modeldir/prediction_$method.csv"
-                python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+                python -W ignore compute_con.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile
 
                done    
         done
@@ -94,12 +91,11 @@ do
                 for method in "${methods[@]}"
                 do
                 gfile="$workdir/$datadir/$datafile/$methodname/run_1/target.csv"
-                outfile="$workdir/$datadir/reproducibility.csv"
-                distr="$WORKDIR/data/$datadir/training_distr.pickle"
+                outfile="$workdir/$datadir/consistency.csv"
 
                 filename1="$workdir/$datadir/DS2/$modeldir/prediction_$method.csv"
                 filename2="$workdir/$datadir/DS3/$modeldir/prediction_$method.csv"
-                python -W ignore compute_consistency.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile -d $distr
+                python -W ignore compute_con.py -p1 $filename1 -p2 $filename2 -g $gfile -o $outfile
 
                done    
         done

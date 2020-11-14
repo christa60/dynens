@@ -40,7 +40,23 @@ Combination methods: Majority Voting (MV); Weighted Majority Voting (WMV); Avera
 
 This paper conducts experiments using three datasets (CIFAR10, CIFAR100, and YAHOO!Answers) and two state-of-the-art models (ResNet and fastText). We use ResNet for CIFAR10 and CIFAR100 and fastText for for YAHOO!Answers. To simulate online data streams with imbalanced class distribution, we reorganize the datasets so that three class imbalanced training sets are generated for each dataset.
 
+## Work directory
+
+Take cifar100 as example
+
+```
+cd dynens/
+mkdir data/cifar100_imbalance
+mkdir output/cifar100_imbalance
+mkdir output/cifar100_imbalance/DS1/dynens-cyc
+mkdir output/cifar100_imbalance/DS2/dynens-cyc
+mkdir output/cifar100_imbalance/DS3/dynens-cyc
+```
+
 ## Data preparation
+
+CIFAR10 and CIFAR100 are downloaded from Keras [Datasets](https://keras.io/api/datasets/).
+Yahoo!Answer is [here](https://www.kaggle.com/soumikrakshit/yahoo-answers-dataset?select=yahoo_answers_csv).
 
 ```
 python generate_training_dataset_cifar10.py
@@ -73,6 +89,7 @@ performance.sh
 
 ```
 generage_class_distribution.py
+compute_accuracy.py
 compute_reproducibility.py
 random_generate_index_by_number.py
 ```

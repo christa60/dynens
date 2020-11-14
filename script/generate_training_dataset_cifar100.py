@@ -1,5 +1,9 @@
-# Generate training, validation and testing dataset for CIFAR100
-# The script will generate balanced and imbalanced training dataset
+"""
+Methods to generate training, validation and testing dataset for CIFAR100.
+The script will generate balanced and imbalanced training dataset.
+Done by Lijing Wang
+Aug 7, 2019
+"""
 
 import os
 import pickle
@@ -43,55 +47,56 @@ x_test_new = x_test[test_index]
 y_test_new = y_test[test_index]
 
 
-# ---- BALANCED TRAINING DATASET ---- #
-# Create balanced training dataset
-percent = 0.8
-sample_size = int(train_size * percent)
-train_index_1 = []
-for i in idx_less:
-    train_index_1 += index_dict[i][:sample_size]
+# # ---- BALANCED TRAINING DATASET ---- #
+# # Create balanced training dataset
+# percent = 0.8
+# sample_size = int(train_size * percent)
+# train_index_1 = []
+# for i in idx_less:
+#     train_index_1 += index_dict[i][:sample_size]
 
-percent = 1
-sample_size = int(train_size * percent)
-train_index_2 = []
-for i in idx_less:
-    train_index_2 += index_dict[i][:sample_size]
+# percent = 1
+# sample_size = int(train_size * percent)
+# train_index_2 = []
+# for i in idx_less:
+#     train_index_2 += index_dict[i][:sample_size]
 
-percent = 1
-sample_size = int(train_size * percent)
-train_index_3 = []
-for i in idx:
-    train_index_3 += index_dict[i][:sample_size]
+# percent = 1
+# sample_size = int(train_size * percent)
+# train_index_3 = []
+# for i in idx:
+#     train_index_3 += index_dict[i][:sample_size]
 
-print('Balanced training dataset lengths: {}, {}, {}'.format(
-    len(train_index_1), len(train_index_2), len(train_index_3)))
+# print('Balanced training dataset lengths: {}, {}, {}'.format(
+#     len(train_index_1), len(train_index_2), len(train_index_3)))
 
 
-# Save datasets
-datadir = '{}/../data/cifar100_balance'.format(dirpath)
-x_train_new = x_train[train_index_1]
-y_train_new = y_train[train_index_1]
-DS_1 = ((x_train_new, y_train_new), (x_valid_new,
-                                     y_valid_new), (x_test_new, y_test_new))
-datafile = '{}/DS1'.format(datadir)
-with open(datafile, 'wb') as f:
-    pickle.dump(DS_1, f)
+# # Save datasets
+# # datadir = '{}/../data/cifar100_balance'.format(dirpath)
+# datadir = dirpath
+# x_train_new = x_train[train_index_1]
+# y_train_new = y_train[train_index_1]
+# DS_1 = ((x_train_new, y_train_new), (x_valid_new,
+#                                      y_valid_new), (x_test_new, y_test_new))
+# datafile = '{}/DS1'.format(datadir)
+# with open(datafile, 'wb') as f:
+#     pickle.dump(DS_1, f)
 
-x_train_new = x_train[train_index_2]
-y_train_new = y_train[train_index_2]
-DS_2 = ((x_train_new, y_train_new), (x_valid_new,
-                                     y_valid_new), (x_test_new, y_test_new))
-datafile = '{}/DS2'.format(datadir)
-with open(datafile, 'wb') as f:
-    pickle.dump(DS_2, f)
+# x_train_new = x_train[train_index_2]
+# y_train_new = y_train[train_index_2]
+# DS_2 = ((x_train_new, y_train_new), (x_valid_new,
+#                                      y_valid_new), (x_test_new, y_test_new))
+# datafile = '{}/DS2'.format(datadir)
+# with open(datafile, 'wb') as f:
+#     pickle.dump(DS_2, f)
 
-x_train_new = x_train[train_index_3]
-y_train_new = y_train[train_index_3]
-DS_3 = ((x_train_new, y_train_new), (x_valid_new,
-                                     y_valid_new), (x_test_new, y_test_new))
-datafile = '{}/DS3'.format(datadir)
-with open(datafile, 'wb') as f:
-    pickle.dump(DS_3, f)
+# x_train_new = x_train[train_index_3]
+# y_train_new = y_train[train_index_3]
+# DS_3 = ((x_train_new, y_train_new), (x_valid_new,
+#                                      y_valid_new), (x_test_new, y_test_new))
+# datafile = '{}/DS3'.format(datadir)
+# with open(datafile, 'wb') as f:
+#     pickle.dump(DS_3, f)
 
 # ---- IMBALANCED TRAINING DATASET ---- #
 # Create imbalanced training dataset
@@ -123,7 +128,8 @@ print('Imbalanced training dataset lenghts: {},{},{}'.format(
     len(train_index_1), len(train_index_2), len(train_index_3)))
 
 # Save datasets
-datadir = '{}/../data/cifar100_imbalance'.format(dirpath)
+# datadir = '{}/../data/cifar100_imbalance'.format(dirpath)
+datadir = dirpath
 x_train_new = x_train[train_index_1]
 y_train_new = y_train[train_index_1]
 DS_1 = ((x_train_new, y_train_new), (x_valid_new,

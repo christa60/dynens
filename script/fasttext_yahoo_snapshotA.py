@@ -85,9 +85,7 @@ initial_lr = 1e-3
 snapshot_window_size = int(math.ceil(epochs/top_k))
 
 print('Loading data...')
-(x_train, y_train), (x_test, y_test) ,(x_valid,y_valid)= data_reader_yahoo.load_data_yahoo_ans(datafile,
-                                                                             max_words=max_features,
-                                                                             max_len=maxlen)
+(x_train, y_train), (x_test, y_test) ,(x_valid,y_valid)= data_reader_yahoo.load_data_yahoo_ans(datafile,max_words=max_features,max_len=maxlen)
 
 
 ###############################################

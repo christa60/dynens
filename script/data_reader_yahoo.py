@@ -4,6 +4,7 @@ and make it avaiable for fasttext classification
 Done by Tere
 Nov 7, 2019
 """
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
