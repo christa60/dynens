@@ -11,7 +11,7 @@ SingleBase: *snapshotB.py with --topK 1
 ExtBagging: Run SingleBase M times with different --seed, then combine them
 MCDropout: *dropout.py with mc_num = M
 Snapshot: *snapshot.py without pruning
-DynSnap-cyc: *snapshot.py with dynamic pruning
+DynSnap-cyc: *snapshotA.py with dynamic pruning
 DynSnap-step: *snapshotB.py with dynamic pruning
 ###
 
