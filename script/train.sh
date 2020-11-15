@@ -2,8 +2,8 @@
 
 
 : << '###'
-*snapshot.py refer to DynSnap-cyc method in the paper
-*snapshotA.py refer to DynSnap-cyc but the learning rate is updated per iteration
+*snapshot.py refer to DynSnap-cyc but the learning rate is updated per iteration
+*snapshotA.py refer to DynSnap-cyc method in the paper
 *snapshotB.py refer to DynSnap-step method in the paper
 *dropout.py refer to MCDropout method in the paper
 
