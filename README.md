@@ -10,13 +10,13 @@ The theoretical findings please refer to our paper ([here](https://papers.nips.c
 In this repository, we focus on describing the proposed dynamic snapshot ensemble method. 
 
 Preliminaries:
-Snapshot ensemble learning [huang2017snapshot](https://openreview.net/pdf?id=BJYwwY9ll): instead of training N neural networks independently, the optimizer converges N times to local optima along its optimization path, thereby training multiple single learners at no additional cost.
+Snapshot ensemble learning ([huang2017snapshot](https://openreview.net/pdf?id=BJYwwY9ll)): instead of training N neural networks independently, the optimizer converges N times to local optima along its optimization path, thereby training multiple single learners at no additional cost.
 
 Extended bagging: training on entire dataset with random shuffling and with random initialization of the neural network parameters.
 
 Our method:
 We extend the snapshot learning in two dimensions - learning rate schedule (cyclic annealing schedule and step-wise decay schedule) and snapshot saving strategy (cyclic snapshot and top-N snapshot).
-We implement two snapshot learning methods: *dynens-cyc* uses cyclic annealing schedule and cyclic snapshot strategy with $t$ as epoch number; *dynens-step* uses step-wise decay schedule and top-N snapshot strategy.
+We implement two snapshot learning methods: *dynens-cyc* uses cyclic annealing schedule and cyclic snapshot strategy with t as epoch number; *dynens-step* uses step-wise decay schedule and top-N snapshot strategy.
 
 **Pruning criteria**
 A single learner is included in the final ensemble learner if its validation accuracy is larger than the pruning threshold defined as:<br>
