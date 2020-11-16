@@ -56,12 +56,18 @@ mkdir output/cifar100_imbalance/DS3/dynens-cyc
 ## Data preparation
 
 CIFAR10 and CIFAR100 are downloaded from Keras [Datasets](https://keras.io/api/datasets/).
-Yahoo!Answer is [here](https://www.kaggle.com/soumikrakshit/yahoo-answers-dataset?select=yahoo_answers_csv).
+Yahoo!Answer is downloaded from [here](https://drive.google.com/drive/folders/0Bz8a_Dbh9Qhbfll6bVpmNUtUcFdjYmF2SEpmZUZUcVNiMUw1TWN6RDV3a0JHT3kxLVhVR2M).
 
 ```
 python generate_training_dataset_cifar10.py
 python generate_training_dataset_cifar100.py
 ```
+
+## Models
+
+ResNet base code is from Keras example [cifar10_resnet](https://keras.io/zh/examples/cifar10_resnet/). The original page that we used is not available anymore, however, the link provides the same contents in Chinese. 
+
+fastText base code is from [here](https://github.com/facebookresearch/fastText).
 
 ## Train and predict
 
