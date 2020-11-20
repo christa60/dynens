@@ -61,6 +61,7 @@ Yahoo!Answer is downloaded from [here](https://drive.google.com/drive/folders/0B
 ```
 python generate_training_dataset_cifar10.py
 python generate_training_dataset_cifar100.py
+python generate_training_dataset_yahoo.py
 ```
 
 ## Models
