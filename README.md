@@ -109,3 +109,14 @@ random_generate_index_by_number.py
 - keras 2.2.4
 - scikit-learn 0.19.1
 - scipy 1.1.0
+
+# Cite
+```
+@article{wang2020wisdom,
+  title={Wisdom of the Ensemble: Improving Consistency of Deep Learning Models},
+  author={Wang, Lijing and Ghosh, Dipanjan and Gonzalez Diaz, Maria and Farahat, Ahmed and Alam, Mahbubul and Gupta, Chetan and Chen, Jiangzhuo and Marathe, Madhav},
+  journal={Advances in Neural Information Processing Systems},
+  volume={33},
+  year={2020}
+}
+```
